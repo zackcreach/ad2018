@@ -14,7 +14,7 @@ export default class Blog extends Component {
       <div className={blog}>
         {data.allContentfulBlogPost.edges.map(({ node }) => (
           <div key={node.id} className={blog__container}>
-            <Link to={node.slug}>{node.title}</Link>
+            <Link to={`/blog/${node.slug}`}>{node.title}</Link>
             <p>{node.date}</p>
             <p>{node.body.childMarkdownRemark.excerpt}</p>
           </div>

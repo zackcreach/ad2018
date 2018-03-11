@@ -5,6 +5,21 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       {
+        allFile {
+          edges {
+            node {
+              relativeDirectory
+              name
+            }
+          }
+        }
+        allContentfulNavigationItem {
+          edges {
+            node {
+              slug
+            }
+          }
+        }
         allContentfulBlogPost {
           edges {
             node {
@@ -15,9 +30,31 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       }
     `)
       .then(result => {
-        result.data.allContentfulBlogPost.edges.forEach(({ node }) => {
+        // Let's start by building an array with all current pages
+        // We've added '/' in contentful, so adding that in to start
+        let currentPages = ['/']
+        result.data.allFile.edges.filter(({ node }) => {
+          if (node.relativeDirectory === 'pages') {
+            return currentPages.push(node.name)
+          }
+        })
+        // Now let's create pages for anything that isn't our /pages
+        // directory already using indexOf() to check if it's in the array
+        result.data.allContentfulNavigationItem.edges.map(({ node }) => {
+          if (currentPages.indexOf(node.slug) === -1) {
+            console.log(`Creating new page ${node.slug}`)
+            createPage({
+              path: `${node.slug}`,
+              component: path.resolve('./src/templates/page.js'),
+              context: {
+                slug: node.slug,
+              },
+            })
+          }
+        })
+        result.data.allContentfulBlogPost.edges.map(({ node }) => {
           createPage({
-            path: node.slug,
+            path: `/blog/${node.slug}`,
             component: path.resolve('./src/templates/post.js'),
             context: {
               slug: node.slug,

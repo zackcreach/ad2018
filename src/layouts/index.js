@@ -19,7 +19,7 @@ export default class TemplateWrapper extends Component {
     return (
       <div>
         <Helmet>
-          <title>Allexa D'Allesio | </title>
+          <title>{`Allexa D'Allesio | ${location}`}</title>
           <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
           <meta
             name="viewport"
@@ -52,14 +52,18 @@ export const query = graphql`
         ...GatsbyImageSharpSizes
       }
     }
-    navigation: allContentfulNavigationItem {
+    navigation: allContentfulNavigationItem(
+      sort: { fields: [order], order: ASC }
+      filter: { active: { eq: true } }
+    ) {
       edges {
         node {
           id
           name
-          link
+          slug
           active
           order
+          background
         }
       }
     }

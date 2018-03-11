@@ -12,7 +12,7 @@ export default class Header extends Component {
     super()
 
     this.state = {
-      logoStatus: 'classy',
+      logoStatus: 'spicy',
     }
   }
   static propTypes = {}
@@ -76,17 +76,17 @@ export default class Header extends Component {
         )}
         <nav className={navigation}>
           {data.navigation.edges
-            .sort((nodeA, nodeB) => nodeA.node.order - nodeB.node.order)
+            // .sort((nodeA, nodeB) => nodeA.node.order - nodeB.node.order)
             .map(({ node }) => (
               <Link
                 key={node.id}
                 activeClassName={navigation__active}
                 className={navigation__item}
-                to={node.link}
-                exact
+                to={node.slug}
+                exact={node.slug === '/'}
               >
                 {node.name}
-                <div className={navigation__box} />
+                <Box background={node.background} />
               </Link>
             ))}
         </nav>
@@ -159,6 +159,8 @@ const navigation = css`
 `
 const navigation__list = css``
 const navigation__item = css`
+  display: block;
+  padding: 0px 7px 1px 8px;
   font-family: var(--font-secondary);
   font-weight: 200;
   font-size: 0.9rem;
@@ -168,30 +170,32 @@ const navigation__item = css`
   position: relative;
   transition: color 0.5s ease-in-out;
   user-select: none;
+  overflow: hidden;
 
   &:hover {
     color: white;
 
     div {
-      max-width: 200%;
+      max-width: 100%;
+      transition: max-width 0.6s ease-out;
     }
   }
 `
-const navigation__box = css`
+const Box = styled('div')`
   position: absolute;
-  background-color: black;
-  max-width: 0%;
+  max-width: 0;
   top: 0;
-  right: -5px;
-  bottom: -1px;
-  left: -5px;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: -1;
-  transition: max-width 1s ease;
+  transition: max-width 0.4s ease-in;
+  background: ${({ background }) => background || 'black'};
 `
 const navigation__active = css`
   color: white;
 
   & div {
-    max-width: 200%;
+    max-width: 100%;
   }
 `
