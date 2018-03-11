@@ -9,14 +9,11 @@ export default class Post extends Component {
     const { data } = this.props
     return (
       <div>
+        <h3>{data.contentfulBlogPost.createdAt}</h3>
+        <h1>{data.contentfulBlogPost.title}</h1>
         <div
           dangerouslySetInnerHTML={{
-            __html: data.markdownRemark.frontmatter.title,
-          }}
-        />
-        <div
-          dangerouslySetInnerHTML={{
-            __html: data.markdownRemark.html,
+            __html: data.contentfulBlogPost.body.childMarkdownRemark.html,
           }}
         />
       </div>
@@ -26,11 +23,17 @@ export default class Post extends Component {
 
 export const query = graphql`
   query BlogPostQuery($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      frontmatter {
-        title
+    contentfulBlogPost(slug: { eq: $slug }) {
+      title
+      body {
+        childMarkdownRemark {
+          html
+          excerpt
+        }
       }
+      createdAt
+      slug
+      id
     }
   }
 `

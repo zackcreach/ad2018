@@ -1,49 +1,31 @@
 const path = require('path')
-const { createFilePath } = require('gatsby-source-filesystem')
-
-exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
-  const { createNodeField } = boundActionCreators
-
-  if (node.internal.type === 'MarkdownRemark') {
-    const slug = createFilePath({
-      node,
-      getNode,
-      basePath: 'posts',
-    })
-    createNodeField({
-      node,
-      name: 'slug',
-      value: `/posts${slug}`,
-    })
-  }
-}
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
   return new Promise((resolve, reject) => {
     graphql(`
       {
-        allMarkdownRemark {
+        allContentfulBlogPost {
           edges {
             node {
-              fields {
-                slug
-              }
+              slug
             }
           }
         }
       }
-    `).then(result => {
-      result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        createPage({
-          path: node.fields.slug,
-          component: path.resolve('./src/templates/post.js'),
-          context: {
-            slug: node.fields.slug,
-          },
+    `)
+      .then(result => {
+        result.data.allContentfulBlogPost.edges.forEach(({ node }) => {
+          createPage({
+            path: node.slug,
+            component: path.resolve('./src/templates/post.js'),
+            context: {
+              slug: node.slug,
+            },
+          })
         })
       })
-    })
+      .catch(error => console.error(error))
     resolve()
   })
 }

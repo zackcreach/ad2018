@@ -10,8 +10,12 @@ export default class Blog extends Component {
     const { data } = this.props
     return (
       <div>
-        {data.allMarkdownRemark.edges.map(({ node }) => (
-          <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+        {data.allContentfulBlogPost.edges.map(({ node }) => (
+          <div>
+            <Link to={node.slug}>{node.title}</Link>
+            <p>{node.date}</p>
+            <p>{node.body.childMarkdownRemark.excerpt}</p>
+          </div>
         ))}
       </div>
     )
@@ -20,19 +24,19 @@ export default class Blog extends Component {
 
 export const query = graphql`
   query allPosts {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allContentfulBlogPost {
       edges {
         node {
           id
-          frontmatter {
-            title
-            date(formatString: "MMMM DD YYYY")
+          title
+          body {
+            childMarkdownRemark {
+              excerpt
+            }
           }
-          fields {
-            slug
-          }
-          html
-          excerpt(pruneLength: 280)
+          createdAt
+          slug
+          id
         }
       }
     }
