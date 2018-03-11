@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: "Allexa D'Allesio",
   },
-  pathPrefix: '/gatsby',
+  // pathPrefix: '/ad2018',
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',
