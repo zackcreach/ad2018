@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
 
+import { css } from 'react-emotion'
+
 export default class Blog extends Component {
   state = {}
   static propTypes = {}
@@ -9,9 +11,9 @@ export default class Blog extends Component {
   render() {
     const { data } = this.props
     return (
-      <div>
+      <div className={blog}>
         {data.allContentfulBlogPost.edges.map(({ node }) => (
-          <div>
+          <div key={node.id} className={blog__container}>
             <Link to={node.slug}>{node.title}</Link>
             <p>{node.date}</p>
             <p>{node.body.childMarkdownRemark.excerpt}</p>
@@ -21,6 +23,9 @@ export default class Blog extends Component {
     )
   }
 }
+
+const blog = css``
+const blog__container = css``
 
 export const query = graphql`
   query allPosts {

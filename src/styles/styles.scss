@@ -1,0 +1,28 @@
+:root {
+  --font-primary: 'Raleway', Helvetica, Arial, sans-serif;
+  --font-secondary: 'Oswald', Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: #444;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+}
