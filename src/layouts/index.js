@@ -43,15 +43,11 @@ export default class TemplateWrapper extends Component {
 
 const container = css`
   margin: 0 auto 0 auto;
+  max-width: 1000px;
 `
 
 export const query = graphql`
   query IndexLayoutQuery {
-    logo: imageSharp(id: { regex: "/logo--black.png/" }) {
-      sizes(maxWidth: 300) {
-        ...GatsbyImageSharpSizes
-      }
-    }
     navigation: allContentfulNavigationItem(
       sort: { fields: [order], order: ASC }
       filter: { active: { eq: true } }

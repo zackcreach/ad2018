@@ -1,13 +1,22 @@
-import React from 'react'
-import Link from 'gatsby-link'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-const IndexPage = () => (
-  <div>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <Link to="/page-2/">Go to page 2</Link>
-  </div>
-)
+import { css } from 'react-emotion'
 
-export default IndexPage
+export default class CHANGE extends Component {
+  state = {}
+  static propTypes = {}
+  static defaultProps = {}
+  render() {
+    return (
+      <div className={container}>
+        <h1 className={title} />
+        <div className={content} />
+      </div>
+    )
+  }
+}
+
+const container = css``
+const title = css``
+const content = css``
