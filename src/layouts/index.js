@@ -16,10 +16,25 @@ export default class TemplateWrapper extends Component {
   }
   render() {
     const { children, data, location } = this.props
+    console.log(data)
+    const pageName = () => {
+      if (location.pathname !== '/') {
+        const removeSlash = location.pathname
+          .replace('-', ' ')
+          .replace(/(.*\/|\/)/i, '')
+        const capitalized = removeSlash.split('')[0].toUpperCase()
+        const newName = [capitalized, ...removeSlash.split('').slice(1)].join(
+          ''
+        )
+        return newName
+      } else {
+        return 'Home'
+      }
+    }
     return (
       <div>
         <Helmet>
-          <title>{`Allexa D'Allesio | ${location}`}</title>
+          <title>{`Allexa D'Allesio`}</title>
           <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
           <meta
             name="viewport"
