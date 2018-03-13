@@ -16,7 +16,6 @@ export default class TemplateWrapper extends Component {
   }
   render() {
     const { children, data, location } = this.props
-    console.log(data)
     const pageName = () => {
       if (location.pathname !== '/') {
         const removeSlash = location.pathname
@@ -45,24 +44,39 @@ export default class TemplateWrapper extends Component {
           />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Raleway:200,300,400,500,600"
+            href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Roboto:300,400,500"
           />
         </Helmet>
         <Header data={data} location={location} />
-        <div className={container}>{children()}</div>
+        <div className={container}>
+          <div className={container__background} />
+          {children()}
+        </div>
       </div>
     )
   }
 }
 
 const container = css`
-  margin: 0 auto 0 auto;
-  max-width: 1000px;
+  margin: 50px auto 0 auto;
+  padding: 0 25px 0 25px;
+  max-width: calc(800px + (25px * 2));
+  position: relative;
 `
-
+const container__background = css`
+  position: absolute;
+  height: 30px;
+  width: 100%;
+  top: -65px;
+  background-image: radial-gradient(
+    rgba(0, 0, 0, 0.03),
+    transparent 70%,
+    transparent
+  );
+`
 export const query = graphql`
   query IndexLayoutQuery {
-    navigation: allContentfulNavigationItem(
+    navigation: allContentfulSitePage(
       sort: { fields: [order], order: ASC }
       filter: { active: { eq: true } }
     ) {

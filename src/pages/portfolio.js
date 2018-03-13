@@ -3,19 +3,22 @@ import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
-import { css } from 'react-emotion'
+import styled, { css } from 'react-emotion'
 
 export default class Portfolio extends Component {
   state = {}
   static propTypes = {}
   static defaultProps = {}
   render() {
+    const { data } = this.props
     return (
       <div className={container}>
         <Helmet>
-          <title>{`Allexa D'Allesio | Portfolio`}</title>
+          <title>{`Allexa D'Allesio | ${data.contentfulSitePage.name}`}</title>
         </Helmet>
-        <h1 className={title} />
+        <Title background={data.contentfulSitePage.background}>
+          {data.contentfulSitePage.name}
+        </Title>
         <div className={content} />
       </div>
     )
@@ -23,12 +26,18 @@ export default class Portfolio extends Component {
 }
 
 const container = css``
-const title = css``
-const content = css``
+const Title = styled('h1')`
+  color: ${({ background }) => background || 'inherit'};
+`
+const content = css`
+  height: 10px;
+  width: 100%;
+  background: yellow;
+`
 
 export const query = graphql`
-  query PortfolioLayoutQuery {
-    portfolio: contentfulNavigationItem(slug: { eq: "portfolio" }) {
+  query PortfolioPageQuery {
+    contentfulSitePage(slug: { eq: "portfolio" }) {
       id
       name
       slug

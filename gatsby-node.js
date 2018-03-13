@@ -13,7 +13,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             }
           }
         }
-        allContentfulNavigationItem {
+        allContentfulSitePage {
           edges {
             node {
               slug
@@ -32,6 +32,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       .then(result => {
         // Let's start by building an array with all current pages
         // We've added '/' in contentful, so adding that in to start
+        console.log(result)
         let currentPages = ['/']
         result.data.allFile.edges.filter(({ node }) => {
           if (node.relativeDirectory === 'pages') {
@@ -40,7 +41,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         })
         // Now let's create pages for anything that isn't our /pages
         // directory already using indexOf() to check if it's in the array
-        result.data.allContentfulNavigationItem.edges.map(({ node }) => {
+        result.data.allContentfulSitePage.edges.map(({ node }) => {
           if (currentPages.indexOf(node.slug) === -1) {
             console.log(`Creating new page ${node.slug}`)
             createPage({

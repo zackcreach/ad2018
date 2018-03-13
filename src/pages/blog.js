@@ -3,7 +3,7 @@ import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
-import { css } from 'react-emotion'
+import styled, { css } from 'react-emotion'
 
 export default class Blog extends Component {
   state = {}
@@ -11,41 +11,76 @@ export default class Blog extends Component {
   static defaultProps = {}
   render() {
     const { data } = this.props
+    console.log(data)
     return (
-      <div className={blog}>
+      <div className={container}>
         <Helmet>
-          <title>Allexa D'Allesio | Blog</title>
+          <title>{`Allexa D'Allesio | ${data.contentfulSitePage.name}`}</title>
         </Helmet>
-        {data.allContentfulBlogPost.edges.map(({ node }) => (
-          <div key={node.id} className={blog__container}>
-            <Link to={`/blog/${node.slug}`}>{node.title}</Link>
-            <p>{node.date}</p>
-            <p>{node.body.childMarkdownRemark.excerpt}</p>
-          </div>
-        ))}
+        <Title background={data.contentfulSitePage.background}>
+          {data.contentfulSitePage.name}
+        </Title>
+        <div className={content}>
+          {data.allContentfulBlogPost.edges.map(({ node }) => (
+            <div className={entry} key={node.id}>
+              <Link to={`/blog/${node.slug}`}>{node.title}</Link>{' '}
+              <span className={date}>{node.createdAt}</span>
+              <p>{node.body.childMarkdownRemark.excerpt}</p>
+            </div>
+          ))}
+        </div>
       </div>
     )
   }
 }
 
-const blog = css``
-const blog__container = css``
+const container = css``
+const Title = styled('h1')`
+  color: ${({ background }) => background || 'inherit'};
+`
+const content = css`
+  height: 10px;
+  width: 100%;
+  background: yellow;
+`
+const entry = css`
+  font-size: 1rem;
+  line-height: 28px;
+  font-weight: 300;
+  padding: 0 0 10px 0;
 
+  @media (min-width: 850px) {
+    font-size: 1.2rem;
+    line-height: 32px;
+  }
+`
+const date = css`
+  color: #999;
+  padding: 0 0 0 8px;
+  font-size: 0.8rem;
+`
 export const query = graphql`
-  query allPosts {
-    allContentfulBlogPost {
+  query BlogPageQuery {
+    contentfulSitePage(slug: { eq: "blog" }) {
+      id
+      name
+      slug
+      background
+    }
+    allContentfulBlogPost(sort: { fields: [createdAt], order: DESC }) {
       edges {
         node {
           id
+          slug
+          createdAt(formatString: "MMMM DD, YYYY")
+          updatedAt(formatString: "MMMM DD, YYYY")
           title
+          tags
           body {
             childMarkdownRemark {
-              excerpt
+              excerpt(pruneLength: 140)
             }
           }
-          createdAt
-          slug
-          id
         }
       }
     }

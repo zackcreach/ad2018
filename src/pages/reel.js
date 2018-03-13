@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
+import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
 import styled, { css } from 'react-emotion'
 
-export default class Page extends Component {
+export default class Reel extends Component {
   state = {}
   static propTypes = {}
   static defaultProps = {}
   render() {
     const { data } = this.props
     return (
-      <div>
+      <div className={container}>
         <Helmet>
           <title>{`Allexa D'Allesio | ${data.contentfulSitePage.name}`}</title>
         </Helmet>
@@ -24,22 +25,22 @@ export default class Page extends Component {
   }
 }
 
+const container = css``
 const Title = styled('h1')`
   color: ${({ background }) => background || 'inherit'};
 `
 const content = css`
   height: 10px;
   width: 100%;
-  background: red;
+  background: yellow;
 `
 
 export const query = graphql`
-  query PageQuery($slug: String!) {
-    contentfulSitePage(slug: { eq: $slug }) {
+  query ReelPageQuery {
+    contentfulSitePage(slug: { eq: "reel" }) {
+      id
       name
       slug
-      active
-      order
       background
     }
   }

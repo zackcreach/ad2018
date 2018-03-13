@@ -5,7 +5,7 @@ import Helmet from 'react-helmet'
 
 import styled, { css } from 'react-emotion'
 
-export default class Home extends Component {
+export default class About extends Component {
   state = {}
   static propTypes = {}
   static defaultProps = {}
@@ -20,19 +20,18 @@ export default class Home extends Component {
           {data.contentfulSitePage.name}
         </Title>
         <div className={content}>
-          <p>
-            Knausgaard tbh disrupt cardigan lyft literally yr franzen kombucha.
-            Tacos prism locavore man braid, fingerstache pickled salvia before
-            they sold out hammock scenester. Knausgaard thundercats godard
-            pour-over farm-to-table, plaid XOXO copper mug roof party. Butcher
-            post-ironic XOXO, scenester air plant chambray jianbing adaptogen.
-          </p>
-          <p>
-            Polaroid hot chicken umami pop-up drinking vinegar normcore hella
-            cornhole. Jean shorts live-edge normcore before they sold out health
-            goth, lumbersexual neutra selfies copper mug tattooed pitchfork
-            crucifix. Copper mug banjo pop-up locavore selfies.
-          </p>
+          <div className={attribution}>
+            <a
+              href="https://www.contentful.com/"
+              rel="nofollow"
+              target="_blank"
+            >
+              <img
+                src="https://images.contentful.com/fo9twyrwpveg/44baP9Gtm8qE2Umm8CQwQk/c43325463d1cb5db2ef97fca0788ea55/PoweredByContentful_LightBackground.svg"
+                alt="Powered by Contentful"
+              />
+            </a>
+          </div>
         </div>
       </div>
     )
@@ -44,13 +43,21 @@ const Title = styled('h1')`
   color: ${({ background }) => background || 'inherit'};
 `
 const content = css`
-  height: 10px;
+  min-height: 50vh;
   width: 100%;
+  background: yellow;
+  position: relative;
+`
+const attribution = css`
+  position: absolute;
+  width: 100px;
+  bottom: 10px;
+  right: 10px;
 `
 
 export const query = graphql`
-  query HomePageQuery {
-    contentfulSitePage(slug: { eq: "/" }) {
+  query AboutPageQuery {
+    contentfulSitePage(slug: { eq: "about" }) {
       id
       name
       slug

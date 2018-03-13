@@ -75,20 +75,18 @@ export default class Header extends Component {
           <div className={header__text}>Allexa D'Allesio</div>
         )}
         <nav className={navigation}>
-          {data.navigation.edges
-            // .sort((nodeA, nodeB) => nodeA.node.order - nodeB.node.order)
-            .map(({ node }) => (
-              <Link
-                key={node.id}
-                activeClassName={navigation__active}
-                className={navigation__item}
-                to={node.slug}
-                exact={node.slug === '/'}
-              >
-                {node.name}
-                <Box background={node.background} />
-              </Link>
-            ))}
+          {data.navigation.edges.map(({ node }) => (
+            <Link
+              key={node.id}
+              activeClassName={navigation__active}
+              className={navigation__item}
+              to={node.slug !== '/' ? `/${node.slug}` : node.slug}
+              exact={node.slug === '/'}
+            >
+              {node.name}
+              <Box background={node.background} />
+            </Link>
+          ))}
         </nav>
       </HeaderWrapper>
     )
@@ -101,9 +99,11 @@ const HeaderWrapper = styled('div')`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 1px 50px rgba(0, 0, 0, 0.03);
+  /* box-shadow: 0 1px 50px rgba(0, 0, 0, 0.03); */
   position: relative;
   /* height: ${({ isHome }) => (isHome ? '400px' : '200px')}; */
+  z-index: 1;
+  background-color: white;
 
 `
 const Toggle = styled('div')`
@@ -111,6 +111,7 @@ const Toggle = styled('div')`
   top: 20px;
   right: 20px;
   display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   color: white;
@@ -132,9 +133,15 @@ const header__text = css`
   color: black;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 6rem;
+  font-size: calc(100vw / 8.2);
   margin: 20px 0 20px 0;
+  text-align: center;
   user-select: none;
+
+  @media (min-width: 850px) {
+    font-size: 6rem;
+    margin: 20px 0 20px 0;
+  }
 `
 
 const header__divider = css`
@@ -155,15 +162,21 @@ const navigation = css`
   justify-content: space-between;
   width: 100%;
   max-width: 625px;
-  margin: 0 auto 30px auto;
+  margin: 0 auto 20px auto;
+  padding: 0 18px 0 18px;
+
+  @media (min-width: 850px) {
+    padding: 0 0 0 0;
+  }
 `
 const navigation__list = css``
 const navigation__item = css`
   display: block;
-  padding: 0px 7px 1px 8px;
+  padding: 2px 5px 3px 6px;
   font-family: var(--font-secondary);
   font-weight: 200;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
   letter-spacing: 0.05rem;
   text-transform: uppercase;
   text-decoration: none;
@@ -171,6 +184,13 @@ const navigation__item = css`
   transition: color 0.5s ease-in-out;
   user-select: none;
   overflow: hidden;
+  z-index: 1;
+
+  @media (min-width: 500px) {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding: 0px 7px 1px 8px;
+  }
 
   &:hover {
     color: white;
