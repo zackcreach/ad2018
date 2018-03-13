@@ -34,7 +34,6 @@ export default class TemplateWrapper extends Component {
     return (
       <div>
         <Helmet>
-          <title>{`Allexa D'Allesio`}</title>
           <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
           <meta
             name="viewport"

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Helmet from 'react-helmet'
 
 import styled, { css } from 'react-emotion'
 
@@ -11,6 +12,11 @@ export default class Page extends Component {
     const { data } = this.props
     return (
       <div>
+        <Helmet>
+          <title>{`Allexa D'Allesio | ${
+            data.contentfulNavigationItem.name
+          }`}</title>
+        </Helmet>
         <Title background={data.contentfulNavigationItem.background}>
           {data.contentfulNavigationItem.name}
         </Title>

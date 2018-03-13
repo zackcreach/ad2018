@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Helmet from 'react-helmet'
 
 export default class Post extends Component {
   state = {}
@@ -9,6 +10,9 @@ export default class Post extends Component {
     const { data } = this.props
     return (
       <div>
+        <Helmet>
+          <title>{`Allexa D'Allesio | ${data.contentfulBlogPost.title}`}</title>
+        </Helmet>
         <h3>{data.contentfulBlogPost.createdAt}</h3>
         <h1>{data.contentfulBlogPost.title}</h1>
         <div

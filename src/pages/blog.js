@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
+import Helmet from 'react-helmet'
 
 import { css } from 'react-emotion'
 
@@ -12,6 +13,9 @@ export default class Blog extends Component {
     const { data } = this.props
     return (
       <div className={blog}>
+        <Helmet>
+          <title>Allexa D'Allesio | Blog</title>
+        </Helmet>
         {data.allContentfulBlogPost.edges.map(({ node }) => (
           <div key={node.id} className={blog__container}>
             <Link to={`/blog/${node.slug}`}>{node.title}</Link>
