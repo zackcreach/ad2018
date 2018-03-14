@@ -62,10 +62,10 @@ export default class Contact extends Component {
             ) : (
               <form
                 name="contact-form"
-                action="/contact/#0"
                 method="POST"
-                data-netlify="true"
                 onSubmit={this.handleSubmit}
+                netlify
+                netlify-honeypot="bot-field"
               >
                 <label htmlFor="name">Name</label>
                 <input
@@ -76,6 +76,10 @@ export default class Contact extends Component {
                   autoComplete="name"
                   required
                 />
+                <label className={hidden} htmlFor="bot-field">
+                  Bots only
+                </label>
+                <input className={hidden} name="bot-field" type="text" />
                 <label htmlFor="email">Email</label>
                 <input
                   name="email"
@@ -126,6 +130,10 @@ const right = css`
   @media (min-width: 600px) {
     width: 50%;
   }
+`
+const hidden = css`
+  display: none;
+  visibility: hidden;
 `
 export const query = graphql`
   query ContactPageQuery {
