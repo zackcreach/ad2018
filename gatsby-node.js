@@ -34,10 +34,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         // We've added '/' in contentful, so adding that in to start
         let currentPages = ['/']
         result.data.allFile.edges.filter(({ node }) => {
-          if (node.relativeDirectory === 'pages') {
+          if (node.relativeDirectory.includes('pages')) {
             return currentPages.push(node.name)
           }
         })
+        console.log(currentPages)
         // Now let's create pages for anything that isn't our /pages
         // directory already using indexOf() to check if it's in the array
         result.data.allContentfulSitePage.edges.map(({ node }) => {
