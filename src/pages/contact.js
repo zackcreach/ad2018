@@ -38,15 +38,15 @@ export default class Contact extends Component {
     })
   }
   handleSubmit = event => {
-    fetch('/', {
+    event.preventDefault()
+
+    fetch('/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({ 'form-name': 'contact-form', ...this.state }),
     })
       .then(() => this.setState({ submitted: true }))
       .catch(error => alert(error))
-
-    event.preventDefault()
   }
   render() {
     const { data } = this.props
