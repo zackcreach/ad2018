@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
-import Header from '../components/Header'
+import Header from '../components/header'
 
 import { css } from 'react-emotion'
 import '../styles/styles.scss'
