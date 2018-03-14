@@ -38,9 +38,15 @@ export default class Contact extends Component {
     })
   }
   handleSubmit = event => {
-    this.setState({
-      submitted: true,
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({ 'form-name': 'contact-form', ...this.state }),
     })
+      .then(() => this.setState({ submitted: true }))
+      .catch(error => alert(error))
+
+    event.preventDefault()
   }
   render() {
     const { data } = this.props
@@ -60,13 +66,7 @@ export default class Contact extends Component {
             {this.state.submitted ? (
               <p>Thanks for your message!</p>
             ) : (
-              <form
-                name="contact-form"
-                method="POST"
-                onSubmit={this.handleSubmit}
-                netlify
-                netlify-honeypot="bot-field"
-              >
+              <form onSubmit={this.handleSubmit}>
                 <label htmlFor="name">Name</label>
                 <input
                   name="name"
