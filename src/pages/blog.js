@@ -25,7 +25,7 @@ export default class Blog extends Component {
             <div className={entry} key={node.id}>
               <Link to={`/blog/${node.slug}`}>{node.title}</Link>{' '}
               <span className={date}>{node.createdAt}</span>
-              <p>{node.body.childMarkdownRemark.excerpt}</p>
+              <p className={excerpt}>{node.body.childMarkdownRemark.excerpt}</p>
             </div>
           ))}
         </div>
@@ -41,23 +41,24 @@ const Title = styled('h1')`
 const content = css`
   height: 10px;
   width: 100%;
-  background: yellow;
 `
 const entry = css`
   font-size: 1rem;
   line-height: 28px;
   font-weight: 300;
-  padding: 0 0 10px 0;
+  padding: 0 0 40px 0;
 
   @media (min-width: 850px) {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     line-height: 32px;
   }
 `
 const date = css`
-  color: #999;
+  color: #ccc;
   padding: 0 0 0 8px;
-  font-size: 0.8rem;
+`
+const excerpt = css`
+  padding: 10px 0 0 0;
 `
 export const query = graphql`
   query BlogPageQuery {

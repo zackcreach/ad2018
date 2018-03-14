@@ -133,13 +133,13 @@ const header__text = css`
   color: black;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: calc(100vw / 8.2);
+  font-size: calc(100vw / 7.9);
   margin: 20px 0 20px 0;
   text-align: center;
   user-select: none;
 
-  @media (min-width: 850px) {
-    font-size: 6rem;
+  @media (min-width: 650px) {
+    font-size: 5.35rem;
     margin: 20px 0 20px 0;
   }
 `
@@ -165,7 +165,7 @@ const navigation = css`
   margin: 0 auto 20px auto;
   padding: 0 18px 0 18px;
 
-  @media (min-width: 850px) {
+  @media (min-width: 650px) {
     padding: 0 0 0 0;
   }
 `

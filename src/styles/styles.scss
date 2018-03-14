@@ -15,7 +15,6 @@
 body {
   font-family: var(--font-primary);
   font-size: 16px;
-  color: #333;
 }
 
 img {
@@ -25,6 +24,7 @@ img {
 h1, h2, h3 {
   font-family: var(--font-secondary);
   text-transform: uppercase;
+  color: #333;
 }
 
 h1 {
@@ -49,13 +49,14 @@ ul {
   list-style: square;
 }
 
-p, a, pre, code, li, em, bold, b {
+p, a, pre, code, li, em, label {
   font-size: 1rem;
   line-height: 28px;
   font-weight: 300;
+  color: #555;
   
   @media (min-width: 850px) {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     line-height: 32px;
   }
 }
@@ -65,10 +66,55 @@ p {
 }
 
 a {
-  color: inherit;
   font-weight: 400;
+  transition: all 0.2s ease-in-out;
 }
 
 a:hover {
-  color: inherit;
+  color: black;
+}
+
+input, select, textarea {
+  display:block;
+  border: 1px solid #CCC;
+  height: 46px;
+  padding: 2px 10px;
+  font-size: 1rem;
+  color: #555;
+  min-width: 100%;
+  margin: 0 0 10px 0;
+  font-weight: 300;
+}
+
+textarea {
+  height: 120px;
+  padding-top: 10px;
+}
+
+button {
+  width: 100%;
+  margin: 10px 0 0 0;
+  color: white;
+  font-weight: 200;
+  font-size: 1rem;
+  border: none;
+  height: 46px;
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  background-color: black;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #222;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    background-color: #222;
+    transform: translateY(1px);
+  }
 }
