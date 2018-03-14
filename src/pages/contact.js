@@ -7,7 +7,6 @@ import styled, { css } from 'react-emotion'
 
 export default class Contact extends Component {
   state = {
-    submitted: false,
     name: '',
     email: '',
     emailValid: false,
@@ -41,7 +40,7 @@ export default class Contact extends Component {
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': 'contact-form', ...this.state }),
+      body: encode({ 'form-name': 'contact', ...this.state }),
     })
       .then(() => console.log('success!'))
       .catch(error => alert(error))
@@ -63,51 +62,47 @@ export default class Contact extends Component {
             <p>Have a question? Send me a message!</p>
           </div>
           <div className={right}>
-            {this.state.submitted ? (
-              <p>Thanks for your message!</p>
-            ) : (
-              <form
-                name="contact-form"
-                method="post"
-                action="/contact/thanks"
-                onSubmit={this.handleSubmit}
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
-              >
-                <label htmlFor="name">Name</label>
-                <input
-                  name="name"
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                  type="text"
-                  autoComplete="name"
-                  required
-                />
-                <label className={hidden} htmlFor="bot-field">
-                  Bots only
-                </label>
-                <input className={hidden} name="bot-field" type="text" />
-                <label htmlFor="email">Email</label>
-                <input
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                  type="text"
-                  autoComplete="email"
-                  required
-                />
-                <label htmlFor="message">Message</label>
-                <textarea
-                  name="message"
-                  value={this.state.message}
-                  onChange={this.handleChange}
-                  required
-                />
-                <button disabled={!this.state.emailValid} type="submit">
-                  Send
-                </button>
-              </form>
-            )}
+            <form
+              name="contact"
+              method="post"
+              action="/contact/thanks"
+              onSubmit={this.handleSubmit}
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+            >
+              <label htmlFor="name">Name</label>
+              <input
+                name="name"
+                value={this.state.name}
+                onChange={this.handleChange}
+                type="text"
+                autoComplete="name"
+                required
+              />
+              <label className={hidden} htmlFor="bot-field">
+                Bots only
+              </label>
+              <input className={hidden} name="bot-field" type="text" />
+              <label htmlFor="email">Email</label>
+              <input
+                name="email"
+                value={this.state.email}
+                onChange={this.handleChange}
+                type="text"
+                autoComplete="email"
+                required
+              />
+              <label htmlFor="message">Message</label>
+              <textarea
+                name="message"
+                value={this.state.message}
+                onChange={this.handleChange}
+                required
+              />
+              <button disabled={!this.state.emailValid} type="submit">
+                Send
+              </button>
+            </form>
           </div>
         </div>
       </div>
