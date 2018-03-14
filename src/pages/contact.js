@@ -38,15 +38,12 @@ export default class Contact extends Component {
     })
   }
   handleSubmit = event => {
-    event.preventDefault()
-
     this.setState({
       submitted: true,
     })
   }
   render() {
     const { data } = this.props
-    console.log(this.state)
     return (
       <div className={container}>
         <Helmet>
@@ -65,9 +62,9 @@ export default class Contact extends Component {
             ) : (
               <form
                 name="contact-form"
-                method="post"
+                action="/contact/#0"
+                method="POST"
                 data-netlify="true"
-                data-netlify-honeypot="bot-field"
                 onSubmit={this.handleSubmit}
               >
                 <label htmlFor="name">Name</label>

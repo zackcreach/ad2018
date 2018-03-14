@@ -21,7 +21,6 @@ export default class Post extends Component {
           {data.contentfulBlogPost.tags !== null &&
             data.contentfulBlogPost.tags.map((node, index) => {
               if (index <= 5) {
-                console.log(node)
                 return (
                   <a className={tag} key={index}>
                     {node}

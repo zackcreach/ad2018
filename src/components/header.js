@@ -51,7 +51,6 @@ export default class Header extends Component {
     }
   }
   render() {
-    console.log(this.state)
     const { data, location } = this.props
     return (
       <HeaderWrapper

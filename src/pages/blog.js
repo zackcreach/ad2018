@@ -11,7 +11,6 @@ export default class Blog extends Component {
   static defaultProps = {}
   render() {
     const { data } = this.props
-    console.log(data)
     return (
       <div className={container}>
         <Helmet>

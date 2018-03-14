@@ -32,7 +32,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       .then(result => {
         // Let's start by building an array with all current pages
         // We've added '/' in contentful, so adding that in to start
-        console.log(result)
         let currentPages = ['/']
         result.data.allFile.edges.filter(({ node }) => {
           if (node.relativeDirectory === 'pages') {
