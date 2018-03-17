@@ -98,11 +98,7 @@ export default class Contact extends Component {
                 onChange={this.handleChange}
                 required
               />
-              <button
-                className={button}
-                disabled={!this.state.emailValid}
-                type="submit"
-              >
+              <button disabled={!this.state.emailValid} type="submit">
                 Send
               </button>
             </form>
