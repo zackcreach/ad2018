@@ -19,7 +19,9 @@ export default class Resume extends Component {
         <Title background={data.contentfulSitePage.background}>
           {data.contentfulSitePage.name}
         </Title>
-        <div className={content} />
+        <div className={content}>
+          <p>What shall we put here?</p>
+        </div>
       </div>
     )
   }
@@ -30,9 +32,7 @@ const Title = styled('h1')`
   color: ${({ background }) => background || 'inherit'};
 `
 const content = css`
-  height: 10px;
   width: 100%;
-  background: yellow;
 `
 
 export const query = graphql`

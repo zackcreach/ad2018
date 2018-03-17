@@ -20,7 +20,8 @@ export default class About extends Component {
           {data.contentfulSitePage.name}
         </Title>
         <div className={content}>
-          <div className={attribution}>
+          <p>What shall we put here?</p>
+          {/* <div className={attribution}>
             <a
               href="https://www.contentful.com/"
               rel="nofollow"
@@ -31,7 +32,7 @@ export default class About extends Component {
                 alt="Powered by Contentful"
               />
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     )
@@ -43,9 +44,8 @@ const Title = styled('h1')`
   color: ${({ background }) => background || 'inherit'};
 `
 const content = css`
-  min-height: 50vh;
+  min-height: 100%;
   width: 100%;
-  background: yellow;
   position: relative;
 `
 const attribution = css`

@@ -20,6 +20,7 @@ export default class Home extends Component {
           {data.contentfulSitePage.name}
         </Title>
         <div className={content}>
+          <p>Pictures perhaps? Same as current homepage.</p>
           <p>
             Knausgaard tbh disrupt cardigan lyft literally yr franzen kombucha.
             Tacos prism locavore man braid, fingerstache pickled salvia before
