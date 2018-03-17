@@ -40,7 +40,7 @@ export default class Contact extends Component {
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': 'contact', ...this.state }),
+      body: encode({ 'form-name': 'contact-form', ...this.state }),
     })
       .then(() => console.log('success!'))
       .catch(error => alert(error))
@@ -65,8 +65,7 @@ export default class Contact extends Component {
             <form
               name="contact-form"
               method="post"
-              action="/contact/thanks"
-              // onSubmit={this.handleSubmit}
+              onSubmit={this.handleSubmit}
               data-netlify="true"
               data-netlify-honeypot="bot-field"
             >
@@ -99,7 +98,11 @@ export default class Contact extends Component {
                 onChange={this.handleChange}
                 required
               />
-              <button disabled={!this.state.emailValid} type="submit">
+              <button
+                className={button}
+                disabled={!this.state.emailValid}
+                type="submit"
+              >
                 Send
               </button>
             </form>
@@ -147,3 +150,9 @@ export const query = graphql`
     }
   }
 `
+
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
+}
