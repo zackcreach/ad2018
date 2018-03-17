@@ -18,7 +18,15 @@ export default class Page extends Component {
         <Title background={data.contentfulSitePage.background}>
           {data.contentfulSitePage.name}
         </Title>
-        <div className={content} />
+        <div className={content}>
+          {data.contentfulSitePage.content ? (
+            <div
+              dangerouslySetInnerHTML={{ __html: contentfulSitePage.content }}
+            />
+          ) : (
+            <p>Coming soon!</p>
+          )}
+        </div>
       </div>
     )
   }
@@ -28,9 +36,7 @@ const Title = styled('h1')`
   color: ${({ background }) => background || 'inherit'};
 `
 const content = css`
-  height: 10px;
   width: 100%;
-  background: red;
 `
 
 export const query = graphql`
