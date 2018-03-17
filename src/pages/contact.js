@@ -63,10 +63,10 @@ export default class Contact extends Component {
           </div>
           <div className={right}>
             <form
-              name="contact"
+              name="contact-form"
               method="post"
               action="/contact/thanks"
-              onSubmit={this.handleSubmit}
+              // onSubmit={this.handleSubmit}
               data-netlify="true"
               data-netlify-honeypot="bot-field"
             >
