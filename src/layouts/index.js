@@ -67,6 +67,8 @@ const container__background = css`
   position: absolute;
   height: 30px;
   width: 100%;
+  left: 0;
+  right: 0;
   top: -65px;
   background-image: radial-gradient(
     rgba(0, 0, 0, 0.03),

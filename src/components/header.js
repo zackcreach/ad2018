@@ -39,18 +39,6 @@ export default class Header extends Component {
     //   }
     // }
   }
-  toggleLogo = () => {
-    if (this.state.logoStatus === 'spicy') {
-      return this.setState({
-        logoStatus: 'classy',
-      })
-    }
-    if (this.state.logoStatus === 'classy') {
-      return this.setState({
-        logoStatus: 'spicy',
-      })
-    }
-  }
   render() {
     const { data, location } = this.props
     return (
@@ -58,24 +46,10 @@ export default class Header extends Component {
         isHome={location.pathname === '/'}
         ref={node => (this.header = ReactDOM.findDOMNode(node))}
       >
-        <Toggle logoStatus={this.state.logoStatus} onClick={this.toggleLogo}>
-          {this.state.logoStatus}
-        </Toggle>
-        {this.state.logoStatus === 'classy' && (
-          <div>
-            <img
-              src={logo}
-              alt="Allexa D'Allesio Logo"
-              className={header__logo}
-            />
-            <figure className={header__divider} />
-          </div>
-        )}
-        {this.state.logoStatus === 'spicy' && (
-          <div className={header__background}>
-            <div className={header__text}>Allexa D'Allesio</div>
-          </div>
-        )}
+        <div className={header__container}>
+          <div className={header__background} />
+          <div className={header__text}>Allexa D'Allesio</div>
+        </div>
         <nav className={navigation}>
           {data.navigation.edges.map(({ node }) => (
             <Link
@@ -101,6 +75,7 @@ const HeaderWrapper = styled('div')`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   /* box-shadow: 0 1px 50px rgba(0, 0, 0, 0.03); */
   position: relative;
   /* height: ${({ isHome }) => (isHome ? '400px' : '200px')}; */
@@ -108,71 +83,46 @@ const HeaderWrapper = styled('div')`
   background-color: white;
 
 `
-const Toggle = styled('div')`
-  position: absolute;
-  top: 20px;
-  right: 20px;
+const header__container = css`
+  width: 100%;
   display: flex;
-  display: none;
   justify-content: center;
-  align-items: center;
-  color: white;
-  background-color: ${({ logoStatus }) =>
-    logoStatus === 'spicy' ? 'red' : 'navy'};
-  height: 80px;
-  width: 80px;
-  cursor: pointer;
-  user-select: none;
-`
-const header__logo = css`
   position: relative;
-  max-width: 300px;
-  margin: 30px auto -35px auto;
 `
 const header__background = css`
-  background-color: white;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  left: 5px;
   background-image: url(${background});
   background-size: 100%;
-  background-position: 0 150px;
+  background-position: 50% 20%;
+  background-repeat: repeat;
   background-attachment: fixed;
-  overflow: hidden;
   /* width: 100%; */
   /* height: 100%; */
-  /* animation: shift 100s alternate infinite ease-in-out; */
 `
 const header__text = css`
   font-family: var(--font-secondary);
   color: black;
   background: white;
   mix-blend-mode: screen;
-  margin: -1px;
   font-weight: 700;
-  /* height: 100%; */
+  width: 100%;
+  height: 100%;
   text-transform: uppercase;
   font-size: calc(100vw / 7.9);
   padding: 16px 0 20px 0;
   text-align: center;
   user-select: none;
+  z-index: 1;
 
   @media (min-width: 650px) {
     font-size: 5.35rem;
     padding: 16px 0 20px 0;
   }
 `
-
-const header__divider = css`
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(0, 0, 0, 0.2),
-    transparent
-  );
-  max-width: 500px;
-  margin: 0 auto 55px auto;
-`
-
 const navigation = css`
   display: flex;
   justify-content: space-between;

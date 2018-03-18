@@ -89,8 +89,7 @@ input, select, textarea {
   margin: 0 0 10px 0;
   font-weight: 300;
   -webkit-appearance: none;
-  appearance: none;
-  border-radius: none;
+  border-radius: 0;
 }
 
 textarea {
