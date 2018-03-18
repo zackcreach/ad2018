@@ -135,6 +135,7 @@ const header__background = css`
   background-size: 100%;
   background-position: 0 150px;
   background-attachment: fixed;
+  overflow: hidden;
   /* width: 100%; */
   /* height: 100%; */
   /* animation: shift 100s alternate infinite ease-in-out; */
