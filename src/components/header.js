@@ -6,6 +6,7 @@ import Img from 'gatsby-image'
 
 import styled, { css } from 'react-emotion'
 import logo from '../images/logo--black.png'
+import background from '../images/background-palm.jpeg'
 
 export default class Header extends Component {
   constructor() {
@@ -71,7 +72,9 @@ export default class Header extends Component {
           </div>
         )}
         {this.state.logoStatus === 'spicy' && (
-          <div className={header__text}>Allexa D'Allesio</div>
+          <div className={header__background}>
+            <div className={header__text}>Allexa D'Allesio</div>
+          </div>
         )}
         <nav className={navigation}>
           {data.navigation.edges.map(({ node }) => (
@@ -126,20 +129,29 @@ const header__logo = css`
   max-width: 300px;
   margin: 30px auto -35px auto;
 `
-
+const header__background = css`
+  background-image: url(${background});
+  background-size: 100%;
+  background-position: 40% 70%;
+  /* width: 100%; */
+  /* height: 100%; */
+`
 const header__text = css`
   font-family: var(--font-secondary);
   color: black;
+  background: white;
+  mix-blend-mode: screen;
   font-weight: 700;
+  height: 100%;
   text-transform: uppercase;
   font-size: calc(100vw / 7.9);
-  margin: 20px 0 20px 0;
+  padding: 20px 0 20px 0;
   text-align: center;
   user-select: none;
 
   @media (min-width: 650px) {
     font-size: 5.35rem;
-    margin: 20px 0 20px 0;
+    padding: 20px 0 20px 0;
   }
 `
 
