@@ -130,28 +130,32 @@ const header__logo = css`
   margin: 30px auto -35px auto;
 `
 const header__background = css`
+  background-color: white;
   background-image: url(${background});
   background-size: 100%;
-  background-position: 40% 70%;
+  background-position: 0 150px;
+  background-attachment: fixed;
   /* width: 100%; */
   /* height: 100%; */
+  /* animation: shift 100s alternate infinite ease-in-out; */
 `
 const header__text = css`
   font-family: var(--font-secondary);
   color: black;
   background: white;
   mix-blend-mode: screen;
+  margin: -1px;
   font-weight: 700;
-  height: 100%;
+  /* height: 100%; */
   text-transform: uppercase;
   font-size: calc(100vw / 7.9);
-  padding: 20px 0 20px 0;
+  padding: 16px 0 20px 0;
   text-align: center;
   user-select: none;
 
   @media (min-width: 650px) {
     font-size: 5.35rem;
-    padding: 20px 0 20px 0;
+    padding: 16px 0 20px 0;
   }
 `
 

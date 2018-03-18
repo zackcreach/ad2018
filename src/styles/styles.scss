@@ -88,6 +88,8 @@ input, select, textarea {
   min-width: 100%;
   margin: 0 0 10px 0;
   font-weight: 300;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 textarea {
@@ -120,5 +122,20 @@ button {
   &:active {
     background-color: #222;
     transform: translateY(1px);
+  }
+}
+
+@keyframes shift {
+  0% {
+    background-position: 20% 20%;
+  }
+  25% {
+    background-position: 40% 80%;
+  }
+  75% {
+    background-position: 80% 40%;
+  }
+  100% {
+    background-position: 30% 30%;
   }
 }
