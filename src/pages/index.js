@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import Img from 'gatsby-image'
 
 import styled, { css } from 'react-emotion'
 
@@ -11,30 +12,34 @@ export default class Home extends Component {
   static defaultProps = {}
   render() {
     const { data } = this.props
-    console.log(data)
+    const assetNumber = data.allContentfulAsset.edges.length
+    const assetHalf = Math.floor(assetNumber / 2)
+    console.log(assetNumber)
     return (
       <div className={container}>
         <Helmet>
           <title>{`Allexa D'Allesio | ${data.contentfulSitePage.name}`}</title>
         </Helmet>
-        <Title background={data.contentfulSitePage.background}>
+        {/* <Title background={data.contentfulSitePage.background}>
           {data.contentfulSitePage.name}
-        </Title>
+        </Title> */}
         <div className={content}>
-          <p>Pictures perhaps? Same as current homepage.</p>
-          <p>
-            Knausgaard tbh disrupt cardigan lyft literally yr franzen kombucha.
-            Tacos prism locavore man braid, fingerstache pickled salvia before
-            they sold out hammock scenester. Knausgaard thundercats godard
-            pour-over farm-to-table, plaid XOXO copper mug roof party. Butcher
-            post-ironic XOXO, scenester air plant chambray jianbing adaptogen.
-          </p>
-          <p>
-            Polaroid hot chicken umami pop-up drinking vinegar normcore hella
-            cornhole. Jean shorts live-edge normcore before they sold out health
-            goth, lumbersexual neutra selfies copper mug tattooed pitchfork
-            crucifix. Copper mug banjo pop-up locavore selfies.
-          </p>
+          <div className={column}>
+            {data.allContentfulAsset.edges.map(({ node }, index) => {
+              if (index <= assetHalf)
+                return (
+                  <img key={index} className={image} src={node.sizes.src} />
+                )
+            })}
+          </div>
+          <div className={column}>
+            {data.allContentfulAsset.edges.map(({ node }, index) => {
+              if (index > assetHalf)
+                return (
+                  <img key={index} className={image} src={node.sizes.src} />
+                )
+            })}
+          </div>
         </div>
       </div>
     )
@@ -46,10 +51,35 @@ const Title = styled('h1')`
   color: ${({ background }) => background || 'inherit'};
 `
 const content = css`
-  height: 10px;
   width: 100%;
-`
+  display: flex;
+  flex-wrap: wrap;
 
+  @media (min-width: 650px) {
+    flex-wrap: nowrap;
+  }
+`
+const column = css`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media (min-width: 650px) {
+    width: 50%;
+
+    &:nth-of-type(1) {
+      margin: 0 3px 0 0;
+    }
+
+    &:nth-of-type(2) {
+      margin: 0 0 0 3px;
+    }
+  }
+`
+const image = css`
+  width: 100%;
+  margin: 0 0 6px 0;
+`
 export const query = graphql`
   query HomePageQuery {
     contentfulSitePage(slug: { eq: "/" }) {
@@ -58,14 +88,17 @@ export const query = graphql`
       slug
       background
     }
-    one: contentfulAsset(title: { eq: "0265" }) {
-      sizes {
-        src
-      }
-    }
-    two: contentfulAsset(title: { eq: "0117" }) {
-      sizes {
-        src
+    allContentfulAsset(
+      filter: { title: { regex: "/home/" } }
+      sort: { fields: [title], order: ASC }
+    ) {
+      edges {
+        node {
+          title
+          sizes {
+            src
+          }
+        }
       }
     }
   }
