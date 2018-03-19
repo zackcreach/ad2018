@@ -11,6 +11,7 @@ export default class Home extends Component {
   static defaultProps = {}
   render() {
     const { data } = this.props
+    console.log(data)
     return (
       <div className={container}>
         <Helmet>
@@ -56,6 +57,16 @@ export const query = graphql`
       name
       slug
       background
+    }
+    one: contentfulAsset(title: { eq: "0265" }) {
+      sizes {
+        src
+      }
+    }
+    two: contentfulAsset(title: { eq: "0117" }) {
+      sizes {
+        src
+      }
     }
   }
 `

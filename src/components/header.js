@@ -47,7 +47,7 @@ export default class Header extends Component {
         ref={node => (this.header = ReactDOM.findDOMNode(node))}
       >
         <div className={header__container}>
-          <div className={header__background} />
+          <Background src={data.headerBackground.resize.src} />
           <div className={header__text}>Allexa D'Allesio</div>
         </div>
         <nav className={navigation}>
@@ -89,19 +89,22 @@ const header__container = css`
   justify-content: center;
   position: relative;
 `
-const header__background = css`
+const Background = styled('div')`
   position: absolute;
   top: 5px;
   right: 5px;
   bottom: 5px;
   left: 5px;
-  background-image: url(${background});
+  background-image: url(${({ src }) => src});
   background-size: 100%;
   background-position: 50% 20%;
   background-repeat: repeat;
-  background-attachment: fixed;
   /* width: 100%; */
   /* height: 100%; */
+
+  @media (min-width: 650px) {
+    background-attachment: fixed;
+  }
 `
 const header__text = css`
   font-family: var(--font-secondary);
