@@ -97,12 +97,13 @@ const Background = styled('div')`
   left: 5px;
   background-image: url(${({ src }) => src});
   background-size: 100%;
-  background-position: 50% 20%;
+  background-position: 50% 0%;
   background-repeat: repeat;
   /* width: 100%; */
   /* height: 100%; */
 
   @media (min-width: 650px) {
+    background-position: 50% 50%;
     background-attachment: fixed;
   }
 `

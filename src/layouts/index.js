@@ -94,7 +94,7 @@ export const query = graphql`
       }
     }
     headerBackground: imageSharp(id: { regex: "/background-palm.jpeg/" }) {
-      resize(width: 700, quality: 80) {
+      resize(width: 800, quality: 70) {
         src
       }
     }
