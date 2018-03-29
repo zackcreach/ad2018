@@ -18,7 +18,7 @@ export default class Home extends Component {
     return (
       <div className={container}>
         <Helmet>
-          <title>{`Allexa D'Allesio | ${data.contentfulSitePage.name}`}</title>
+          <title>{`Allexa D'Alessio | ${data.contentfulSitePage.name}`}</title>
         </Helmet>
         {/* <Title background={data.contentfulSitePage.background}>
           {data.contentfulSitePage.name}

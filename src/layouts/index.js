@@ -40,7 +40,7 @@ export default class TemplateWrapper extends Component {
           />
           <meta
             name="description"
-            content="Personal website of Allexa D'Allesio"
+            content="Personal website of Allexa D'Alessio"
           />
           <link
             rel="stylesheet"

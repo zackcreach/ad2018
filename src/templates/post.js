@@ -13,7 +13,7 @@ export default class Post extends Component {
     return (
       <div>
         <Helmet>
-          <title>{`Allexa D'Allesio | ${data.contentfulBlogPost.title}`}</title>
+          <title>{`Allexa D'Alessio | ${data.contentfulBlogPost.title}`}</title>
         </Helmet>
         <h1 className={title}>{data.contentfulBlogPost.title}</h1>
         <div className={details}>

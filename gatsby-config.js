@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: "Allexa D'Allesio",
+    title: "Allexa D'Alessio",
   },
   // pathPrefix: '/ad2018',
   plugins: [

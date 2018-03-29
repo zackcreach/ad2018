@@ -48,7 +48,7 @@ export default class Header extends Component {
       >
         <div className={header__container}>
           <Background src={data.headerBackground.resize.src} />
-          <div className={header__text}>Allexa D'Allesio</div>
+          <div className={header__text}>Allexa D'Alessio</div>
         </div>
         <nav className={navigation}>
           {data.navigation.edges.map(({ node }) => (

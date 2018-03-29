@@ -13,7 +13,7 @@ export default class Page extends Component {
     return (
       <div>
         <Helmet>
-          <title>{`Allexa D'Allesio | ${data.contentfulSitePage.name}`}</title>
+          <title>{`Allexa D'Alessio | ${data.contentfulSitePage.name}`}</title>
         </Helmet>
         <Title background={data.contentfulSitePage.background}>
           {data.contentfulSitePage.name}
