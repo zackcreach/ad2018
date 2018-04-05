@@ -30,6 +30,7 @@ export default class Post extends Component {
             })}
         </div>
         <div
+          className={content}
           dangerouslySetInnerHTML={{
             __html: data.contentfulBlogPost.body.childMarkdownRemark.html,
           }}
@@ -40,7 +41,7 @@ export default class Post extends Component {
 }
 
 const title = css`
-  padding: 0 0 5px 0;
+  margin: 0 0 5px 0;
 `
 const details = css`
   padding: 0 0 30px 0;
@@ -48,15 +49,15 @@ const details = css`
   align-items: center;
 `
 const date = css`
-  padding: 0 0 0 0;
-  font-size: 0.9rem;
+  margin: 0 0 0 0;
+  font-size: 1.1rem;
   font-weight: 300;
   color: #999;
 `
 const tag = css`
   font-family: var(--font-secondary);
   text-transform: uppercase;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 300;
   color: white;
   background-color: #999;
@@ -73,6 +74,17 @@ const tag = css`
 
   &:first-of-type {
     margin-left: 10px;
+  }
+`
+const content = css`
+  & * {
+    font-size: 1rem;
+    line-height: 28px;
+
+    @media (min-width: 850px) {
+      font-size: 1.3rem;
+      line-height: 38px;
+    }
   }
 `
 

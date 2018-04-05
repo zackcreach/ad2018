@@ -6,7 +6,6 @@ import Img from 'gatsby-image'
 
 import styled, { css } from 'react-emotion'
 import logo from '../images/logo--black.png'
-import background from '../images/background-palm.jpeg'
 
 export default class Header extends Component {
   constructor() {

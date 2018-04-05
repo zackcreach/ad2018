@@ -65,7 +65,35 @@ export default class Contact extends Component {
         </Title>
         <div className={content}>
           <div className={left}>
-            <p>Have a question? Send me a message!</p>
+            <p />
+            <p className={left__question}>
+              Have a question? Send me a message!<br /> For booking inquiries:
+            </p>
+            <h3>
+              <b>Los Angeles</b>
+            </h3>
+            <p className={agency}>
+              Natural Models -{' '}
+              <a href="mailto:amanda@naturalmodelsla.com?subject=Allexa%20D%27Alessio">
+                amanda@naturalmodelsla.com
+              </a>
+            </p>
+            <p className={agency}>
+              The Osbrink Agency (Commercial) -{' '}
+              <a href="mailto:Libby@osbrinkagency.com?subject=Allexa%20D%27Alessio">
+                Libby@osbrinkagency.com
+              </a>
+            </p>
+            <br />
+            <h3>
+              <b>New York</b>
+            </h3>
+            <p className={agency}>
+              Wilhelmina Models -{' '}
+              <a href="mailto:Jaime.Goldberg@wilhelmina.com?subject=Allexa%20D%27Alessio">
+                Jaime.Goldberg@wilhelmina.com
+              </a>
+            </p>
           </div>
           <div className={right}>
             {this.state.submitted ? (
@@ -132,13 +160,30 @@ const Title = styled('h1')`
 const content = css`
   display: flex;
   flex-wrap: wrap;
+
+  & p {
+    padding: 0 0 0 0;
+  }
+`
+const agency = css`
+  font-size: 0.9rem;
+
+  & a {
+    font-weight: 300;
+    font-size: 0.9rem;
+  }
 `
 const left = css`
   width: 100%;
+  padding: 0 0 50px 0;
 
   @media (min-width: 600px) {
     width: 50%;
+    padding: 0 20px 0 0;
   }
+`
+const left__question = css`
+  margin: 0 0 30px 0;
 `
 const right = css`
   width: 100%;
@@ -146,6 +191,7 @@ const right = css`
 
   @media (min-width: 600px) {
     width: 50%;
+    padding: 0 0 50px 20px;
   }
 `
 const hidden = css`

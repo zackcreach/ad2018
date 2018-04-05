@@ -31,30 +31,29 @@ h1, h2, h3 {
 h1 {
   font-size: 1.8rem;
   font-weight: 600;
-  padding: 0 0 25px 0;
+  margin: 0 0 35px 0;
 }
 
 h2 {
   font-size: 1.5rem;
   font-weight: 500;
-  padding: 0 0 25px 0;
+  margin: 0 0 25px 0;
 }
 
 h3 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 400;
-  padding: 0 0 20px 0;
+  margin: 0 0 20px 0;
 }
 
 ul {
   list-style: square;
 }
 
-p, a, pre, code, li, em, label {
+p, b, a, pre, code, li, em {
   font-size: 1rem;
   line-height: 28px;
-  font-weight: 300;
-  color: #555;
+  color: #444;
   
   @media (min-width: 850px) {
     font-size: 1.1rem;
@@ -67,7 +66,16 @@ b {
 }
 
 p {
+  font-weight: 300;
   padding: 0 0 30px 0;
+}
+
+label {
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  font-weight: 300;
+  display: block;
+  margin: 0 0 10px 0;
 }
 
 a {
@@ -87,7 +95,7 @@ input, select, textarea {
   font-size: 1rem;
   color: #555;
   min-width: 100%;
-  margin: 0 0 10px 0;
+  margin: 0 0 15px 0;
   font-weight: 300;
   -webkit-appearance: none;
   border-radius: 0;

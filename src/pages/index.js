@@ -12,34 +12,15 @@ export default class Home extends Component {
   static defaultProps = {}
   render() {
     const { data } = this.props
-    const assetNumber = data.allContentfulAsset.edges.length
-    const assetHalf = Math.floor(assetNumber / 2)
-    console.log(assetNumber)
     return (
       <div className={container}>
         <Helmet>
           <title>{`Allexa D'Alessio | ${data.contentfulSitePage.name}`}</title>
         </Helmet>
-        {/* <Title background={data.contentfulSitePage.background}>
-          {data.contentfulSitePage.name}
-        </Title> */}
         <div className={content}>
-          <div className={column}>
-            {data.allContentfulAsset.edges.map(({ node }, index) => {
-              if (index <= assetHalf)
-                return (
-                  <img key={index} className={image} src={node.sizes.src} />
-                )
-            })}
-          </div>
-          <div className={column}>
-            {data.allContentfulAsset.edges.map(({ node }, index) => {
-              if (index > assetHalf)
-                return (
-                  <img key={index} className={image} src={node.sizes.src} />
-                )
-            })}
-          </div>
+          {data.allContentfulAsset.edges.map(({ node }, index) => (
+            <img key={index} className={image} src={node.sizes.src} />
+          ))}
         </div>
       </div>
     )
@@ -52,34 +33,11 @@ const Title = styled('h1')`
 `
 const content = css`
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-
-  @media (min-width: 650px) {
-    flex-wrap: nowrap;
-  }
-`
-const column = css`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  @media (min-width: 650px) {
-    width: 50%;
-
-    &:nth-of-type(1) {
-      margin: 0 3px 0 0;
-    }
-
-    &:nth-of-type(2) {
-      margin: 0 0 0 3px;
-    }
-  }
 `
 const image = css`
   width: 100%;
-  margin: 0 0 6px 0;
 `
+
 export const query = graphql`
   query HomePageQuery {
     contentfulSitePage(slug: { eq: "/" }) {
@@ -95,7 +53,7 @@ export const query = graphql`
       edges {
         node {
           title
-          sizes {
+          sizes(quality: 90, maxWidth: 1000) {
             src
           }
         }

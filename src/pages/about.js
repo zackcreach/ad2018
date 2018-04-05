@@ -11,6 +11,8 @@ export default class About extends Component {
   static defaultProps = {}
   render() {
     const { data } = this.props
+    const assetNumber = data.allContentfulAboutQuestion.edges.length
+    const assetHalf = Math.floor(assetNumber / 2)
     return (
       <div className={container}>
         <Helmet>
@@ -20,8 +22,41 @@ export default class About extends Component {
           {data.contentfulSitePage.name}
         </Title>
         <div className={content}>
-          <p>What shall we put here?</p>
-          {/* <div className={attribution}>
+          <div className={column}>
+            {this.props.data.allContentfulAboutQuestion.edges.map(
+              ({ node }, index) => {
+                if (index <= assetHalf)
+                  return (
+                    <div class={question}>
+                      <h3>{node.question}</h3>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: node.answer.answer,
+                        }}
+                      />
+                    </div>
+                  )
+              }
+            )}
+          </div>
+          <div className={column}>
+            {this.props.data.allContentfulAboutQuestion.edges.map(
+              ({ node }, index) => {
+                if (index > assetHalf)
+                  return (
+                    <div class={question}>
+                      <h3>{node.question}</h3>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: node.answer.answer,
+                        }}
+                      />
+                    </div>
+                  )
+              }
+            )}
+          </div>
+          <div className={attribution}>
             <a
               href="https://www.contentful.com/"
               rel="nofollow"
@@ -32,7 +67,7 @@ export default class About extends Component {
                 alt="Powered by Contentful"
               />
             </a>
-          </div> */}
+          </div>
         </div>
       </div>
     )
@@ -43,10 +78,40 @@ const container = css``
 const Title = styled('h1')`
   color: ${({ background }) => background || 'inherit'};
 `
+const question = css``
 const content = css`
-  min-height: 100%;
   width: 100%;
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (min-width: 650px) {
+    flex-wrap: nowrap;
+  }
+
+  h3 {
+    background-color: #293722;
+    color: white;
+    padding-left: 5px;
+    padding-bottom: 2px;
+    font-weight: 200;
+  }
+`
+const column = css`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media (min-width: 650px) {
+    width: 50%;
+
+    &:nth-of-type(1) {
+      margin: 0 20px 0 0;
+    }
+
+    &:nth-of-type(2) {
+      margin: 0 0 0 20px;
+    }
+  }
 `
 const attribution = css`
   position: absolute;
@@ -62,6 +127,17 @@ export const query = graphql`
       name
       slug
       background
+    }
+    allContentfulAboutQuestion(sort: { fields: [createdAt], order: ASC }) {
+      edges {
+        node {
+          createdAt
+          question
+          answer {
+            answer
+          }
+        }
+      }
     }
   }
 `

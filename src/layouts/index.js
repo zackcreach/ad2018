@@ -60,7 +60,7 @@ export default class TemplateWrapper extends Component {
 const container = css`
   margin: 50px auto 0 auto;
   padding: 0 25px 0 25px;
-  max-width: calc(800px + (25px * 2));
+  max-width: calc(1000px + (25px * 2));
   position: relative;
 `
 const container__background = css`

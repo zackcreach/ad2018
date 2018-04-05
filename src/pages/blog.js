@@ -42,14 +42,17 @@ const content = css`
   width: 100%;
 `
 const entry = css`
-  font-size: 1rem;
-  line-height: 28px;
-  font-weight: 300;
   padding: 0 0 40px 0;
+  font-weight: 300;
 
-  @media (min-width: 850px) {
-    font-size: 1.1rem;
-    line-height: 32px;
+  & * {
+    font-size: 1rem;
+    line-height: 28px;
+
+    @media (min-width: 850px) {
+      font-size: 1.3rem;
+      line-height: 38px;
+    }
   }
 `
 const date = css`
