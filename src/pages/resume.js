@@ -44,8 +44,7 @@ export default class Resume extends Component {
 
           <div className={agency__container}>
             {agencies.edges.map(({ node }, index) => (
-              // <React.Fragment key={index}>
-              <div className={agency}>
+              <div className={agency} key={index}>
                 <div dangerouslySetInnerHTML={{ __html: node.name }} />
                 <div
                   dangerouslySetInnerHTML={{
@@ -53,8 +52,6 @@ export default class Resume extends Component {
                   }}
                 />
               </div>
-              // <div className={divider} />
-              // </React.Fragment> */}
             ))}
           </div>
 
