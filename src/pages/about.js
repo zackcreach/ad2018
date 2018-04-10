@@ -89,7 +89,7 @@ const content = css`
   }
 
   h3 {
-    background-color: #293722;
+    background-color: #222;
     color: white;
     padding-left: 5px;
     padding-bottom: 2px;
