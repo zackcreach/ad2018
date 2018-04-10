@@ -58,59 +58,59 @@ export default class Resume extends Component {
           <h2 className={heading}>Film</h2>
           {film.edges.map(({ node }, index) => (
             <div className={row} key={index}>
-              <p
+              <div
                 dangerouslySetInnerHTML={{
                   __html: node.description.childMarkdownRemark.html,
                 }}
               />
-              <p dangerouslySetInnerHTML={{ __html: node.role }} />
-              <p dangerouslySetInnerHTML={{ __html: node.credit }} />
+              <div dangerouslySetInnerHTML={{ __html: node.role }} />
+              <div dangerouslySetInnerHTML={{ __html: node.credit }} />
             </div>
           ))}
 
           <h2 className={heading}>New Media</h2>
           {newMedia.edges.map(({ node }, index) => (
             <div className={row} key={index}>
-              <p
+              <div
                 dangerouslySetInnerHTML={{
                   __html: node.description.childMarkdownRemark.html,
                 }}
               />
-              <p dangerouslySetInnerHTML={{ __html: node.role }} />
-              <p dangerouslySetInnerHTML={{ __html: node.credit }} />
+              <div dangerouslySetInnerHTML={{ __html: node.role }} />
+              <div dangerouslySetInnerHTML={{ __html: node.credit }} />
             </div>
           ))}
 
           <h2 className={heading}>Commercial</h2>
           {commercial.edges.map(({ node }, index) => (
             <div className={row} key={index}>
-              <p
+              <div
                 dangerouslySetInnerHTML={{
                   __html: node.description.childMarkdownRemark.html,
                 }}
               />
-              <p dangerouslySetInnerHTML={{ __html: node.role }} />
-              <p dangerouslySetInnerHTML={{ __html: node.credit }} />
+              <div dangerouslySetInnerHTML={{ __html: node.role }} />
+              <div dangerouslySetInnerHTML={{ __html: node.credit }} />
             </div>
           ))}
 
           <h2 className={heading}>Theater</h2>
           {theater.edges.map(({ node }, index) => (
             <div className={row} key={index}>
-              <p
+              <div
                 dangerouslySetInnerHTML={{
                   __html: node.description.childMarkdownRemark.html,
                 }}
               />
-              <p dangerouslySetInnerHTML={{ __html: node.role }} />
-              <p dangerouslySetInnerHTML={{ __html: node.credit }} />
+              <div dangerouslySetInnerHTML={{ __html: node.role }} />
+              <div dangerouslySetInnerHTML={{ __html: node.credit }} />
             </div>
           ))}
 
           <h2 className={heading}>Training</h2>
           {training.edges.map(({ node }, index) => (
             <div className={row} key={index}>
-              <p
+              <div
                 dangerouslySetInnerHTML={{
                   __html: node.description.childMarkdownRemark.html,
                 }}
@@ -122,7 +122,7 @@ export default class Resume extends Component {
           <h2 className={heading}>Skills</h2>
           {skills.edges.map(({ node }, index) => (
             <div className={row} key={index}>
-              <p
+              <div
                 dangerouslySetInnerHTML={{
                   __html: node.description.childMarkdownRemark.html,
                 }}
@@ -163,7 +163,8 @@ const agency = css`
     padding: 0 0 0 10px;
   }
 
-  &, p {
+  &,
+  p {
     font-size: 0.6rem;
     line-height: 1.5;
 
@@ -171,6 +172,7 @@ const agency = css`
       font-size: 1rem;
       line-height: 2;
     }
+  }
 `
 const divider = css`
   border-right: 1px solid #333;
@@ -181,7 +183,7 @@ const row = css`
   display: flex;
   justify-content: space-between;
 
-  p {
+  div {
     font-size: 0.6rem;
     line-height: 1.5;
     font-weight: 300;
@@ -191,24 +193,35 @@ const row = css`
       line-height: 2;
     }
 
+    p {
+      font-size: 0.6rem;
+      line-height: 1.5;
+      padding: 0;
+
+      @media (min-width: 600px) {
+        font-size: 1rem;
+        line-height: 2;
+      }
+    }
+
     &:nth-of-type(odd) {
       background-color: rgba(255, 255, 255, 0.1);
     }
   }
 
-  & p:nth-of-type(1) {
+  & div:nth-of-type(1) {
     flex: 1 0 46%;
     text-align: left;
     padding: 0 10px 0 0;
   }
 
-  & p:nth-of-type(2) {
+  & div:nth-of-type(2) {
     flex: 0 1 12%;
     text-align: left;
     padding: 0 10px;
   }
 
-  & p:nth-of-type(3) {
+  & div:nth-of-type(3) {
     flex: 0 1 42%;
     text-align: right;
     padding: 0 0 0 10px;
