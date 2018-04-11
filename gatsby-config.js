@@ -7,9 +7,9 @@ module.exports = {
     {
       resolve: 'gatsby-source-contentful',
       options: {
-        spaceId: 'q2sn17erf7r7',
+        spaceId: '7i8oitrgc6hc',
         accessToken:
-          'c4de5a46799798a9a3029cfb6ee426c1404bc5928314f33002e841d8461c1516',
+          'f888d650e449d8cfbce2ee6790a7f6db0690de95c9cb4a47c2408112765da396',
       },
     },
     'gatsby-plugin-react-helmet',
