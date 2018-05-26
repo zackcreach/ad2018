@@ -130,7 +130,7 @@ const navigation = css`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 625px;
+  max-width: 450px;
   margin: 0 auto 20px auto;
   padding: 0 18px 0 18px;
 
