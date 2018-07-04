@@ -134,7 +134,7 @@ const navigation = css`
   width: 100%;
   max-width: 450px;
   margin: 0 auto 20px auto;
-  padding: 0 50px 0 50px;
+  padding: 0 13% 0 13%;
 
   @media (min-width: 650px) {
     padding: 0 0 0 0;
