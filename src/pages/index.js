@@ -118,9 +118,6 @@ export default class Home extends Component {
 }
 
 const container = css``
-const Title = styled('h1')`
-  color: ${({ background }) => background || 'inherit'};
-`
 const content = css`
   width: 100%;
 `
@@ -131,6 +128,9 @@ const social = css`
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
+  margin: 0 auto 0 auto;
+  padding: 0 25px 0 25px;
+  max-width: calc(1000px + (25px * 2));
 `
 const social__left = css`
   text-align: center;
@@ -139,7 +139,7 @@ const social__left = css`
 
   @media (min-width: 750px) {
     flex: 1 1 50%;
-    padding: 40px 20px 40px 0;
+    padding: 40px 30px 40px 0;
   }
 `
 const social__right = css`
@@ -150,8 +150,7 @@ const social__right = css`
 
   @media (min-width: 750px) {
     flex: 1 1 50%;
-    padding: 40px 0 40px 10px;
-    padding-left: 20px;
+    padding: 40px 0 40px 30px;
   }
 `
 const social__title = css`
@@ -191,7 +190,7 @@ export const query = graphql`
       edges {
         node {
           title
-          sizes(quality: 95, maxWidth: 1200) {
+          sizes(quality: 95, maxWidth: 2000) {
             src
           }
         }

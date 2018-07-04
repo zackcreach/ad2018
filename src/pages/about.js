@@ -22,38 +22,25 @@ export default class About extends Component {
           {data.contentfulSitePage.name}
         </Title>
         <div className={content}>
-          <div className={column}>
-            {this.props.data.allContentfulAboutQuestion.edges.map(
-              ({ node }, index) => {
-                if (index <= assetHalf)
-                  return (
-                    <div className={question} key={index}>
-                      <h3>{node.question}</h3>
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: node.answer.answer,
-                        }}
-                      />
-                    </div>
-                  )
-              }
-            )}
+          <div className={left}>
+            {data.allContentfulAsset.edges.map(({ node }, index) => (
+              <img key={index} className={image} src={node.sizes.src} />
+            ))}
           </div>
-          <div className={column}>
+          <div className={right}>
             {this.props.data.allContentfulAboutQuestion.edges.map(
-              ({ node }, index) => {
-                if (index > assetHalf)
-                  return (
-                    <div className={question} key={index}>
-                      <h3>{node.question}</h3>
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: node.answer.answer,
-                        }}
-                      />
-                    </div>
-                  )
-              }
+              ({ node }, index) => (
+                <div className={question__container} key={index}>
+                  <Question background={data.contentfulSitePage.background}>
+                    {node.question}
+                  </Question>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: node.answer.answer,
+                    }}
+                  />
+                </div>
+              )
             )}
           </div>
           <div className={attribution}>
@@ -77,47 +64,83 @@ export default class About extends Component {
 const container = css``
 const Title = styled('h1')`
   color: ${({ background }) => background || 'inherit'};
+  margin: 25px auto 0 auto;
+  padding: 0 25px 0 25px;
+  max-width: calc(1000px + (25px * 2));
+
+  @media (min-width: 650px) {
+    padding: 35px 25px 0 25px;
+  }
 `
-const question = css``
+const Question = styled('h3')`
+  background-color: ${({ background }) => background || '#222'};
+  color: white;
+  margin-bottom: 15px;
+  padding: 0 5px 2px 5px;
+  font-weight: 200;
+`
+const question__container = css`
+  &:last-of-type {
+    padding-bottom: 60px;
+  }
+`
 const content = css`
   width: 100%;
+  margin: 25px auto 0 auto;
+  padding: 0 25px 0 25px;
+  max-width: calc(1000px + (25px * 2));
   display: flex;
   flex-wrap: wrap;
 
   @media (min-width: 650px) {
     flex-wrap: nowrap;
   }
-
-  h3 {
-    background-color: #222;
-    color: white;
-    padding-left: 5px;
-    padding-bottom: 2px;
-    font-weight: 200;
-  }
 `
-const column = css`
-  display: flex;
-  flex-direction: column;
+const left = css`
   width: 100%;
 
   @media (min-width: 650px) {
-    width: 50%;
+    width: 64%;
+    margin: 0 20px 0 0;
+  }
+`
+const right = css`
+  width: 100%;
 
+  @media (min-width: 650px) {
+    width: 36%;
+    margin: 0 0 0 20px;
+  }
+`
+const image = css`
+  width: 100%;
+  vertical-align: top;
+
+  &:nth-of-type(1) {
+    padding: 0 0 30px 0;
+    max-height: 350px;
+    object-fit: cover;
+    object-position: 50% 0;
+  }
+  &:nth-of-type(n + 2) {
+    display: none;
+  }
+
+  @media (min-width: 650px) {
     &:nth-of-type(1) {
-      margin: 0 20px 0 0;
+      max-height: 100%;
+      padding: 0;
     }
-
-    &:nth-of-type(2) {
-      margin: 0 0 0 20px;
+    &:nth-of-type(n + 1) {
+      display: block;
     }
   }
 `
 const attribution = css`
   position: absolute;
   width: 100px;
-  bottom: 10px;
-  right: 10px;
+  bottom: 0;
+  right: 30px;
 `
 
 export const query = graphql`
@@ -127,6 +150,20 @@ export const query = graphql`
       name
       slug
       background
+    }
+    allContentfulAsset(
+      limit: 3
+      filter: { title: { regex: "/about/" } }
+      sort: { fields: [title], order: ASC }
+    ) {
+      edges {
+        node {
+          title
+          sizes(quality: 95, maxWidth: 800) {
+            src
+          }
+        }
+      }
     }
     allContentfulAboutQuestion(sort: { fields: [createdAt], order: ASC }) {
       edges {

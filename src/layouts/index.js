@@ -58,10 +58,8 @@ export default class TemplateWrapper extends Component {
 }
 
 const container = css`
-  margin: 50px auto 0 auto;
-  padding: 0 25px 0 25px;
-  max-width: calc(1000px + (25px * 2));
   position: relative;
+  margin: 0 auto 30px auto;
 `
 const container__background = css`
   position: absolute;
@@ -69,7 +67,7 @@ const container__background = css`
   width: 100%;
   left: 0;
   right: 0;
-  top: -65px;
+  top: -40px;
   background-image: radial-gradient(
     rgba(0, 0, 0, 0.03),
     transparent 70%,
@@ -94,7 +92,7 @@ export const query = graphql`
       }
     }
     headerBackground: imageSharp(id: { regex: "/background-palm.jpeg/" }) {
-      resize(width: 800, quality: 70) {
+      resize(width: 1500, quality: 95) {
         src
       }
     }

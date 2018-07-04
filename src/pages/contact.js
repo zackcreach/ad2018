@@ -156,8 +156,18 @@ export default class Contact extends Component {
 const container = css``
 const Title = styled('h1')`
   color: ${({ background }) => background || 'inherit'};
+  margin: 25px auto 0 auto;
+  padding: 0 25px 0 25px;
+  max-width: calc(1000px + (25px * 2));
+
+  @media (min-width: 650px) {
+    padding: 35px 25px 0 25px;
+  }
 `
 const content = css`
+  margin: 25px auto 0 auto;
+  padding: 0 25px 0 25px;
+  max-width: calc(1000px + (25px * 2));
   display: flex;
   flex-wrap: wrap;
 

@@ -95,14 +95,13 @@ const Background = styled('div')`
   bottom: 5px;
   left: 5px;
   background-image: url(${({ src }) => src});
-  background-size: 100%;
   background-position: 50% 0%;
   background-repeat: repeat;
   /* width: 100%; */
   /* height: 100%; */
 
   @media (min-width: 650px) {
-    background-position: 50% 50%;
+    background-position: 50% 100%;
     background-attachment: fixed;
   }
 `
@@ -115,15 +114,18 @@ const header__text = css`
   width: 100%;
   height: 100%;
   text-transform: uppercase;
-  font-size: calc(100vw / 7.9);
-  padding: 16px 0 20px 0;
+  font-size: 10vw;
+  padding: 16px 0 5px 0;
   text-align: center;
   user-select: none;
   z-index: 1;
 
   @media (min-width: 650px) {
-    font-size: 5.35rem;
     padding: 16px 0 20px 0;
+  }
+
+  @media (min-width: 1360px) {
+    font-size: 8.5rem;
   }
 `
 const navigation = css`
@@ -132,7 +134,7 @@ const navigation = css`
   width: 100%;
   max-width: 450px;
   margin: 0 auto 20px auto;
-  padding: 0 18px 0 18px;
+  padding: 0 50px 0 50px;
 
   @media (min-width: 650px) {
     padding: 0 0 0 0;
@@ -144,8 +146,8 @@ const navigation__item = css`
   padding: 2px 5px 3px 6px;
   font-family: var(--font-secondary);
   font-weight: 200;
-  font-size: 0.8rem;
-  line-height: 1.4;
+  font-size: 0.725rem;
+  line-height: 1;
   letter-spacing: 0.05rem;
   text-transform: uppercase;
   text-decoration: none;

@@ -139,13 +139,26 @@ export default class Resume extends Component {
 const container = css``
 const Title = styled('h1')`
   color: ${({ background }) => background || 'inherit'};
+  margin: 25px auto 0 auto;
+  padding: 0 25px 0 25px;
+  max-width: calc(1000px + (25px * 2));
+
+  @media (min-width: 650px) {
+    padding: 35px 25px 0 25px;
+  }
 `
 const content = css`
   width: 100%;
-  padding: 0 0 45px 0;
+  margin: 25px auto 0 auto;
+  padding: 0 25px 45px 25px;
+  max-width: calc(1000px + (25px * 2));
 `
 const heading = css`
-  padding: 45px 0 0 0;
+  padding: 20px 0 0 0;
+
+  @media (min-width: 600px) {
+    padding: 40px 0 0 0;
+  }
 `
 const agency__container = css`
   display: flex;
@@ -165,12 +178,13 @@ const agency = css`
 
   &,
   p {
-    font-size: 0.6rem;
+    font-size: 0.5rem;
     line-height: 1.5;
+    padding: 0;
 
     @media (min-width: 600px) {
       font-size: 1rem;
-      line-height: 2;
+      line-height: 1.8;
     }
   }
 `
@@ -184,23 +198,23 @@ const row = css`
   justify-content: space-between;
 
   div {
-    font-size: 0.6rem;
+    font-size: 0.5rem;
     line-height: 1.5;
     font-weight: 300;
 
     @media (min-width: 600px) {
       font-size: 1rem;
-      line-height: 2;
+      line-height: 1.75;
     }
 
     p {
-      font-size: 0.6rem;
+      font-size: 0.5rem;
       line-height: 1.5;
       padding: 0;
 
       @media (min-width: 600px) {
         font-size: 1rem;
-        line-height: 2;
+        line-height: 1.75;
       }
     }
 

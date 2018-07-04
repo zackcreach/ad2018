@@ -34,9 +34,19 @@ export default class Page extends Component {
 
 const Title = styled('h1')`
   color: ${({ background }) => background || 'inherit'};
+  margin: 35px auto 0 auto;
+  padding: 0 25px 0 25px;
+  max-width: calc(1000px + (25px * 2));
+
+  @media (min-width: 650px) {
+    padding: 35px 25px 0 25px;
+  }
 `
 const content = css`
   width: 100%;
+  margin: 25px auto 0 auto;
+  padding: 0 25px 0 25px;
+  max-width: calc(1000px + (25px * 2));
 `
 
 export const query = graphql`
