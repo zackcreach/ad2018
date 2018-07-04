@@ -27,7 +27,7 @@ export default class About extends Component {
               ({ node }, index) => {
                 if (index <= assetHalf)
                   return (
-                    <div class={question}>
+                    <div className={question} key={index}>
                       <h3>{node.question}</h3>
                       <p
                         dangerouslySetInnerHTML={{
@@ -44,7 +44,7 @@ export default class About extends Component {
               ({ node }, index) => {
                 if (index > assetHalf)
                   return (
-                    <div class={question}>
+                    <div className={question} key={index}>
                       <h3>{node.question}</h3>
                       <p
                         dangerouslySetInnerHTML={{

@@ -14,6 +14,9 @@ export default class Portfolio extends Component {
     const { data } = this.props
     const assetNumber = data.allContentfulAsset.edges.length
     const assetHalf = Math.floor(assetNumber / 2)
+    const imagesRandomized = data.allContentfulAsset.edges.sort(
+      () => 0.5 - Math.random()
+    )
     return (
       <div className={container}>
         <Helmet>
@@ -24,7 +27,7 @@ export default class Portfolio extends Component {
         </Title>
         <div className={content}>
           <div className={column}>
-            {data.allContentfulAsset.edges.map(({ node }, index) => {
+            {imagesRandomized.map(({ node }, index) => {
               if (index <= assetHalf)
                 return (
                   <img key={index} className={image} src={node.sizes.src} />
@@ -32,7 +35,7 @@ export default class Portfolio extends Component {
             })}
           </div>
           <div className={column}>
-            {data.allContentfulAsset.edges.map(({ node }, index) => {
+            {imagesRandomized.map(({ node }, index) => {
               if (index > assetHalf)
                 return (
                   <img key={index} className={image} src={node.sizes.src} />
@@ -87,10 +90,7 @@ export const query = graphql`
       slug
       background
     }
-    allContentfulAsset(
-      filter: { title: { regex: "/portfolio/" } }
-      sort: { fields: [title], order: ASC }
-    ) {
+    allContentfulAsset(sort: { fields: [title], order: ASC }) {
       edges {
         node {
           title
