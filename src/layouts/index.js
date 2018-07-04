@@ -36,12 +36,20 @@ export default class TemplateWrapper extends Component {
           <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
           <meta
             name="viewport"
-            content="width=device-width, initial-scale=1.0"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1"
           />
+          <meta name="title" content="Allexa D'Alessio" />
+          <meta name="description" content="Allexa D'Alessio" />
+          <meta property="og:title" content="Allexa D'Alessio" />
+          <meta property="og:description" content="Allexa D'Alessio" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://allexadalessio.com" />
           <meta
-            name="description"
-            content="Personal website of Allexa D'Alessio"
+            property="og:image"
+            content="https://images.ctfassets.net/7i8oitrgc6hc/7awjpRTea4eoQ0ge6SeOUs/7aaa89e9bd9582efa90cd58648b58671/AD5A3659-Edit.jpg?w=1200&q=95"
           />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Roboto:300,400,500"
