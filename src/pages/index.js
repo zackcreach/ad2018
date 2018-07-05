@@ -47,7 +47,7 @@ export default class Home extends Component {
         if (index <= 8) {
           addPost(
             this.instagram,
-            post.images.thumbnail.url,
+            post.images.low_resolution.url,
             post.link,
             post.caption.text
           )
@@ -139,7 +139,7 @@ const social__left = css`
 
   @media (min-width: 750px) {
     flex: 1 1 50%;
-    padding: 40px 30px 40px 0;
+    padding: 60px 30px 40px 0;
   }
 `
 const social__right = css`
@@ -150,7 +150,7 @@ const social__right = css`
 
   @media (min-width: 750px) {
     flex: 1 1 50%;
-    padding: 40px 0 40px 30px;
+    padding: 60px 0 40px 30px;
   }
 `
 const social__title = css`
