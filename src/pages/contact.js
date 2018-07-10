@@ -167,7 +167,7 @@ const content = css`
   flex-wrap: wrap;
 `
 const header = css`
-  background: #ccc;
+  background: black;
   color: white;
   margin-bottom: 15px;
   padding: 0 5px 2px 5px;
