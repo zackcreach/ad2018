@@ -68,9 +68,7 @@ export default class Contact extends Component {
             <p className={left__question}>
               Have a question? Send me a message!<br /> For booking inquiries:
             </p>
-            <h3>
-              <b>Los Angeles</b>
-            </h3>
+            <h3 className={header}>Los Angeles</h3>
             <p className={agency}>
               Natural Models<br />
               <a href="mailto:amanda@naturalmodelsla.com?subject=Allexa%20D%27Alessio">
@@ -84,9 +82,7 @@ export default class Contact extends Component {
               </a>
             </p>
             <br />
-            <h3>
-              <b>New York</b>
-            </h3>
+            <h3 className={header}>New York</h3>
             <p className={agency}>
               Wilhelmina Models<br />
               <a href="mailto:Jaime.Goldberg@wilhelmina.com?subject=Allexa%20D%27Alessio">
@@ -169,6 +165,13 @@ const content = css`
   max-width: calc(1000px + (25px * 2));
   display: flex;
   flex-wrap: wrap;
+`
+const header = css`
+  background: #ccc;
+  color: white;
+  margin-bottom: 15px;
+  padding: 0 5px 2px 5px;
+  font-weight: 200;
 `
 const agency = css`
   padding-bottom: 15px;
