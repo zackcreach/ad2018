@@ -65,7 +65,6 @@ export default class Contact extends Component {
         </Title>
         <div className={content}>
           <div className={left}>
-            <p />
             <p className={left__question}>
               Have a question? Send me a message!<br /> For booking inquiries:
             </p>
@@ -73,13 +72,13 @@ export default class Contact extends Component {
               <b>Los Angeles</b>
             </h3>
             <p className={agency}>
-              Natural Models -{' '}
+              Natural Models<br />
               <a href="mailto:amanda@naturalmodelsla.com?subject=Allexa%20D%27Alessio">
                 amanda@naturalmodelsla.com
               </a>
             </p>
             <p className={agency}>
-              The Osbrink Agency (Commercial) -{' '}
+              The Osbrink Agency (Commercial)<br />
               <a href="mailto:Libby@osbrinkagency.com?subject=Allexa%20D%27Alessio">
                 Libby@osbrinkagency.com
               </a>
@@ -89,7 +88,7 @@ export default class Contact extends Component {
               <b>New York</b>
             </h3>
             <p className={agency}>
-              Wilhelmina Models -{' '}
+              Wilhelmina Models<br />
               <a href="mailto:Jaime.Goldberg@wilhelmina.com?subject=Allexa%20D%27Alessio">
                 Jaime.Goldberg@wilhelmina.com
               </a>
@@ -170,17 +169,12 @@ const content = css`
   max-width: calc(1000px + (25px * 2));
   display: flex;
   flex-wrap: wrap;
-
-  & p {
-    padding: 0 0 0 0;
-  }
 `
 const agency = css`
-  font-size: 0.9rem;
+  padding-bottom: 15px;
 
-  & a {
+  a {
     font-weight: 300;
-    font-size: 0.9rem;
   }
 `
 const left = css`
@@ -194,6 +188,7 @@ const left = css`
 `
 const left__question = css`
   margin: 0 0 30px 0;
+  padding: 0;
 `
 const right = css`
   width: 100%;
