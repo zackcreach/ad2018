@@ -14,8 +14,6 @@ export default class Home extends Component {
     this.renderInstagram()
   }
   renderInstagram = () => {
-    console.log('Starting instagram..')
-
     const fetchData = url => {
       return fetch(url)
         .then(data => data.json())

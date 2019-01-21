@@ -12,6 +12,7 @@
     "gatsby-image": "^1.0.54",
     "gatsby-link": "^1.6.45",
     "gatsby-plugin-emotion": "^1.1.17",
+    "gatsby-plugin-google-analytics": "^2.0.9",
     "gatsby-plugin-react-helmet": "^2.0.11",
     "gatsby-plugin-sass": "^1.0.26",
     "gatsby-plugin-sharp": "^1.6.48",
@@ -29,7 +30,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "dev": "gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "gatsby build && gh-pages -d public -b master"

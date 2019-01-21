@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: "Allexa D'Alessio",
@@ -7,9 +11,15 @@ module.exports = {
     {
       resolve: 'gatsby-source-contentful',
       options: {
-        spaceId: '7i8oitrgc6hc',
-        accessToken:
-          'f888d650e449d8cfbce2ee6790a7f6db0690de95c9cb4a47c2408112765da396',
+        spaceId: process.env.CF_SPACE_ID,
+        accessToken: process.env.CF_ACCESS_TOKEN,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.GA_TRACKING_ID,
+        head: true,
       },
     },
     'gatsby-plugin-react-helmet',

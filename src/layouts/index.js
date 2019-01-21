@@ -14,15 +14,7 @@ export default class TemplateWrapper extends Component {
     data: PropTypes.object,
     location: PropTypes.object,
   }
-  componentDidMount() {
-    window.dataLayer = window.dataLayer || []
-    function gtag() {
-      dataLayer.push(arguments)
-    }
-    gtag('js', new Date())
-
-    gtag('config', 'UA-116714616-2')
-  }
+  componentDidMount() {}
   render() {
     const { children, data, location } = this.props
     const pageName = () => {
@@ -62,10 +54,6 @@ export default class TemplateWrapper extends Component {
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Roboto:300,400,500"
-          />
-          <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=UA-116714616-2"
           />
         </Helmet>
         <Header data={data} location={location} />
