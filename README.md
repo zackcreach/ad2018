@@ -12,6 +12,6 @@ npm i -g gatsby-cli
 
 Then you can run it by:
 ```sh
-cd ad2018
+cd allexa
 gatsby develop
 ```
